@@ -18,15 +18,24 @@
 
 <body>
 
+    <p>The computer will guess how many fingers you are holding up. <br>
+        The computer will loop through the possible answers, and reply how many iterations it took. <br>
+        Only insert integers between and including 0 to 5.
+    </p>
+    <p>How many fingers are you holding up?</p>   
+    <input type="text" id="answerInput"> <button id="startButton">click to start</button>
 
   <script>
 
-    var solution = 3;
+
     var possibleSolutions = [0,1,2,3,4,5];
     var solved = 0;
     var numberofGuesses = 0;
     
+    document.getElementById("startButton").onclick = function(){
 
+        clickToStartGuessing();
+    }
 
 
     function computerGuess() {
@@ -35,17 +44,25 @@
         thisGuess = possibleSolutions[indexInArray];
         possibleSolutions.splice(indexInArray,1);
         numberofGuesses ++;
+        console.log(thisGuess);
         return thisGuess;
 
     }
 
-    while (solved == 0){
+    function clickToStartGuessing(){
 
-        var answer = computerGuess();
+  
 
-        if (answer == solution){
-            alert("the computer reached the solution in "+numberofGuesses+" guesses");
-            solved = 1;
+        while (solved == 0){
+
+            var answer = computerGuess();
+
+            var solution = document.getElementById("answerInput").value;
+
+            if (answer == solution){
+                alert("the computer reached the solution in "+numberofGuesses+" guesses");
+                solved = 1;
+            }
         }
     }
 
