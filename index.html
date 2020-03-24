@@ -23,18 +23,48 @@
         Only insert integers between and including 0 to 5.
     </p>
     <p>How many fingers are you holding up?</p>   
-    <input type="text" id="answerInput"> <button id="startButton">click to start</button>
+    <select id="answerInput" name="Amount of fingers">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+
+    <button id="startButton">click to start</button>
 
   <script>
 
 
     var possibleSolutions = [0,1,2,3,4,5];
-    var solved = 0;
+    var solved = 0; 
     var numberofGuesses = 0;
     
     document.getElementById("startButton").onclick = function(){
 
         clickToStartGuessing();
+    }
+
+
+    function clickToStartGuessing(){
+
+        solved = 0; 
+        possibleSolutions = [0,1,2,3,4,5];
+        numberofGuesses = 0;
+
+        while (solved == 0){
+
+            var answer = computerGuess();
+
+            var solution = document.getElementById("answerInput").value;
+
+            if (answer == solution){
+                alert("The correct answer was "+solution+" . the computer reached the solution in "+numberofGuesses+" guesses");
+                solved = 1;
+                console.log("End of round.")
+            }
+        }
     }
 
 
@@ -49,22 +79,6 @@
 
     }
 
-    function clickToStartGuessing(){
-
-  
-
-        while (solved == 0){
-
-            var answer = computerGuess();
-
-            var solution = document.getElementById("answerInput").value;
-
-            if (answer == solution){
-                alert("the computer reached the solution in "+numberofGuesses+" guesses");
-                solved = 1;
-            }
-        }
-    }
 
 
   </script>
